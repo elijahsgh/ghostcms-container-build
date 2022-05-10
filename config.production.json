@@ -1,0 +1,12 @@
+{
+    "paths": {
+	"contentPath": "/var/lib/ghost/content.orig/"
+    },
+    "logging": {
+        "level": "info",
+        "transports": ["stdout"]
+    },
+    "storage": {
+        "active": "LocalFileStorage"
+    }
+}
