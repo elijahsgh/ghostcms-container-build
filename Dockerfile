@@ -3,7 +3,7 @@
 # https://github.com/docker-library/ghost/blob/master/4/alpine/Dockerfile
 FROM docker.io/node:14-alpine as ghostinstall
 ENV GHOST_CLI_VERSION 1.19.3
-ENV GHOST_VERSION 4.47.0
+ENV GHOST_VERSION 4.47.1
 
 ENV NODE_ENV development
 ENV GHOST_INSTALL /var/lib/ghost

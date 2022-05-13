@@ -2,11 +2,12 @@
 shopt -s expand_aliases
 
 alias docker=podman
-VERSION=0.2.0
-docker build . -t gcr.io/tamarintech-sites/newghostcms:$VERSION
-docker tag gcr.io/tamarintech-sites/newghostcms:$VERSION gcr.io/tamarintech-sites/newghostcms:latest
-docker push gcr.io/tamarintech-sites/newghostcms:$VERSION
-docker push gcr.io/tamarintech-sites/newghostcms:latest
+GHOST_VERSION=4.47.1
+export GHOST_VERSION
+docker build . -t gcr.io/tamarintech-sites/ghostcms:$GHOST_VERSION
+docker tag gcr.io/tamarintech-sites/ghostcms:$GHOST_VERSION gcr.io/tamarintech-sites/ghostcms:latest
+docker push gcr.io/tamarintech-sites/ghostcms:$GHOST_VERSION
+docker push gcr.io/tamarintech-sites/ghostcms:latest
 
 #docker push gcr.io/tamarintech-sites/newghostcms:$VERSION && \
 #  docker push gcr.io/tamarintech-sites/newghostcms:latest && \

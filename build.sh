@@ -1,1 +1,1 @@
-podman build . -t newghostcms
+podman build . -t ghostcms
