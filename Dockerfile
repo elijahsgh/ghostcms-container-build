@@ -1,9 +1,12 @@
 # Merged ghost Dockerfile with personal dockerfile that included google storage plugin
 # also includes sharp
 # https://github.com/docker-library/ghost/blob/master/4/alpine/Dockerfile
-FROM docker.io/node:14-alpine as ghostinstall
-ENV GHOST_CLI_VERSION 1.19.3
-ENV GHOST_VERSION 4.47.1
+FROM docker.io/node:16-alpine as ghostinstall
+ARG GHOST_CLI_VERSION
+ARG GHOST_VERSION
+
+ENV GHOST_CLI_VERSION=${GHOST_CLI_VERSION:-1.19.3}
+ENV GHOST_VERSION=${GHOST_VERSION:-4.47.1}
 
 ENV NODE_ENV development
 ENV GHOST_INSTALL /var/lib/ghost
@@ -25,7 +28,7 @@ RUN set -eux; \
 # Google Cloud Storage
 RUN npm install --prefix $GHOST_INSTALL elijahsgh/ghost-google-cloud-storage#dev \
     npm cache clean --force; \
-    echo 2;
+    echo 3;
 
 RUN mkdir -p $GHOST_CONTENT/adapters/storage/gcloud
 RUN printf "'use strict';\nmodule.exports = require('ghost-google-cloud-storage-new');\n" > $GHOST_CONTENT/adapters/storage/gcloud/index.js
@@ -70,10 +73,11 @@ RUN	set -eux; \
 	npm cache clean --force; \
 	rm -rv /tmp/yarn* /tmp/v8*
 
+RUN chown node: -R "$GHOST_INSTALL"
 RUN su-exec node npm install --prefix "$GHOST_INSTALL" sharp
 
 
-FROM docker.io/node:14-alpine
+FROM docker.io/node:16-alpine
 ENV NODE_ENV production
 ENV GHOST_INSTALL /var/lib/ghost
 ENV GHOST_CONTENT /var/lib/ghost/content
