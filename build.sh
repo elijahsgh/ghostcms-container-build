@@ -3,7 +3,7 @@ shopt -s expand_aliases
 alias docker=podman
 
 GHOST_CLI_VERSION=latest
-GHOST_VERSION=5.0.0
+GHOST_VERSION=5.19.3
 
 docker build . \
 	--build-arg GHOST_VERSION=$GHOST_VERSION \
